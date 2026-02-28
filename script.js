@@ -83,3 +83,56 @@ function handleCancel() {
     // Takes the user back to the Home/Hero screen
     showSection('hero');
 }
+
+// Global arrays to hold session data (resets on refresh)
+let customers = [];
+let accounts = [];
+
+// UPDATE your existing handleLogin function
+function handleLogin() {
+    const u = document.getElementById('login-user').value;
+    const p = document.getElementById('login-pass').value;
+    const d = JSON.parse(localStorage.getItem(u));
+    
+    if (d && d.pass === p) {
+        document.getElementById('dashboard-welcome').innerText = `Welcome, ${d.firstName}!`;
+        showSection('user-dashboard'); // Changed from welcome-page
+    } else { alert("Invalid credentials"); }
+}
+
+// NEW functions for Customer and Account
+function saveCustomer() {
+    const name = document.getElementById('cust-name').value;
+    const phone = document.getElementById('cust-phone').value;
+    if(!name) return alert("Enter name");
+    
+    customers.push({name, phone});
+    alert("Customer Added!");
+    document.getElementById('cust-name').value = "";
+    document.getElementById('cust-phone').value = "";
+    showSection('user-dashboard');
+}
+
+function saveAccount() {
+    const type = document.getElementById('acc-type').value;
+    const bal = document.getElementById('acc-balance').value;
+    if(!type) return alert("Enter type");
+
+    accounts.push({type, bal});
+    alert("Account Added!");
+    document.getElementById('acc-type').value = "";
+    document.getElementById('acc-balance').value = "";
+    showSection('user-dashboard');
+}
+
+function generateReport() {
+    const reportDiv = document.getElementById('report-content');
+    let html = `<h3>Total Customers: ${customers.length}</h3><ul>`;
+    customers.forEach(c => html += `<li>${c.name} - ${c.phone}</li>`);
+    html += `</ul><h3>Total Accounts: ${accounts.length}</h3><ul>`;
+    accounts.forEach(a => html += `<li>${a.type}: $${a.bal}</li>`);
+    html += `</ul>`;
+    
+    reportDiv.innerHTML = html;
+    showSection('report-page');
+}
