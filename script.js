@@ -77,3 +77,9 @@ function renderUserTable() {
         } catch(e) {}
     }
 }
+function handleCancel() {
+    // Clears the form fields
+    document.getElementById('regForm').reset();
+    // Takes the user back to the Home/Hero screen
+    showSection('hero');
+}
