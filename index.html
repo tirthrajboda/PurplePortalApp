@@ -132,4 +132,46 @@
     <!-- Link to JS -->
     <script src="script.js"></script>
 </body>
+
+    html
+<!-- 7. User Dashboard (After Login) -->
+<div id="user-dashboard" class="section" style="background: white; color: #333; padding: 30px; border-radius: 10px; width: 100%; max-width: 600px;">
+    <h2 id="dashboard-welcome" style="color: #4B0082;">Welcome</h2>
+    <div class="button-group">
+        <button class="submit-btn" onclick="showSection('customer-form')">Add Customer</button>
+        <button class="submit-btn" onclick="showSection('account-form')">Add Account</button>
+        <button class="submit-btn" style="background-color: #28a745;" onclick="generateReport()">View Reports</button>
+    </div>
+    <button class="submit-btn cancel-btn" onclick="location.reload()" style="margin-top: 20px;">Logout</button>
+</div>
+
+<!-- 8. Customer Entry Form -->
+<div id="customer-form" class="form-card section">
+    <h2>Customer Information</h2>
+    <div class="form-group"><label>Customer Name</label><input type="text" id="cust-name"></div>
+    <div class="form-group"><label>Phone</label><input type="text" id="cust-phone"></div>
+    <div class="button-group">
+        <button class="submit-btn" onclick="saveCustomer()">Save Customer</button>
+        <button class="submit-btn cancel-btn" onclick="showSection('user-dashboard')">Back</button>
+    </div>
+</div>
+
+<!-- 9. Account Entry Form -->
+<div id="account-form" class="form-card section">
+    <h2>Account Information</h2>
+    <div class="form-group"><label>Account Type</label><input type="text" id="acc-type" placeholder="e.g. Savings"></div>
+    <div class="form-group"><label>Balance</label><input type="number" id="acc-balance"></div>
+    <div class="button-group">
+        <button class="submit-btn" onclick="saveAccount()">Save Account</button>
+        <button class="submit-btn cancel-btn" onclick="showSection('user-dashboard')">Back</button>
+    </div>
+</div>
+
+<!-- 10. Reports Section -->
+<div id="report-page" class="section" style="background: white; color: #333; padding: 20px; border-radius: 10px; width: 90%;">
+    <h2 style="color: #4B0082;">Application Reports</h2>
+    <div id="report-content"></div>
+    <button class="submit-btn" onclick="showSection('user-dashboard')" style="max-width: 150px;">Back to Dashboard</button>
+</div>
 </html>
+
